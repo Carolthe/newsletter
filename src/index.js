@@ -7,7 +7,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded({ extended: true }))
 
-const emails = []
+let emails = []
 
 app.get('/', (req, res) => {
     res.render('index')
@@ -29,7 +29,15 @@ app.get('/success', (req, res) => {
     res.render('success') 
 })
 
+app.get('/emails', (req, res)=>{
+    res.render('emails', {emails})
+})
 
+app.post('/emails/delete', (req, res) => {
+    const { email } = req.body
+    emails = emails.filter(item => item !== email)
+    res.redirect('/emails')
+})
 
 const PORT = 3000
 app.listen(PORT, () => console.log('Está funcionando'))
