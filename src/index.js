@@ -17,20 +17,20 @@ app.post('/signup', (req, res) => {
     const { email } = req.body
 
 
-if (email) {
-    emails.push(email)
-    res.redirect('/success')
-}else{
-    res.redirect('/')
-}
+    if (email) {
+        emails.push(email)
+        res.redirect('/success')
+    } else {
+        res.redirect('/')
+    }
 })
 
 app.get('/success', (req, res) => {
-    res.render('success') 
+    res.render('success')
 })
 
-app.get('/emails', (req, res)=>{
-    res.render('emails', {emails})
+app.get('/emails', (req, res) => {
+    res.render('emails', { emails })
 })
 
 app.post('/emails/delete', (req, res) => {
